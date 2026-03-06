@@ -24,6 +24,18 @@ app.get("/login",(req,res)=>
         res.render("login");
         
     })    
+app.post("/login",(req,res)=>
+    {
+        const {email,password}=req.body;
+        const user=users.find(user=>user.email==email && user.password==password) 
+        if(user){
+            res.redirect("/")
+        }
+        else{
+            res.render("login")
+        }
+
+    })    
 app.listen(8080,()=>
     {
         console.log("Server started")
